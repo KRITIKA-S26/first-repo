@@ -13,13 +13,13 @@
     <div class="flexi-gallery-column">
       {% assign images = '' | split: ',' %}
       {% if block.settings.image1 %}
-        <img src="{{ block.settings.image1 | image_url: width: 600 }}" alt="Image 1" style="width:100%">
+        <img src="{{ block.settings.image1 | image_url: width: 600 }}" alt="Image 1" style="width:60%">
       {% endif %}
       {% if block.settings.image2 %}
-        <img src="{{ block.settings.image2 | image_url: width: 600 }}" alt="Image 2" style="width:100%">
+        <img src="{{ block.settings.image2 | image_url: width: 600 }}" alt="Image 2" style="width:60%">
       {% endif %}
       {% if block.settings.image3 %}
-        <img src="{{ block.settings.image3 | image_url: width: 600 }}" alt="Image 3" style="width:100%">
+        <img src="{{ block.settings.image3 | image_url: width: 600 }}" alt="Image 3" style="width:60%">
       {% endif %}
     </div>
   {% endfor %}
@@ -63,8 +63,8 @@
       flex-wrap: wrap;
     }
     .flexi-gallery-column {
-      flex: 0 0 100%;
-      max-width: 100%;
+      flex: 0 0 60%;
+      max-width: 60%;
     }
   }
 </style>
@@ -123,4 +123,3 @@
   ]
 }
 {% endschema %}
-
