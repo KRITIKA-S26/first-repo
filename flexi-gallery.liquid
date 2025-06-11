@@ -1,4 +1,8 @@
 <!-- sections/flexi-gallery.liquid -->
+{% comment %}
+  Flexi Image Gallery Section
+{% endcomment %}
+
 <div class="flexi-gallery-header">
   <h1 class="flex-heading">{{ section.settings.title }}</h1>
   <p>{{ section.settings.subtitle }}</p>
@@ -8,59 +12,61 @@
   {% for block in section.blocks %}
     <div class="flexi-gallery-column">
       {% if block.settings.image1 %}
-       <img src="{{ block.settings.image1 | img_url: '600x' }}" alt="" style="width:100%">
+        <img src="{{ block.settings.image1 | image_url: width: 600 }}" alt="Image 1" style="width:100%">
       {% endif %}
       {% if block.settings.image2 %}
-        <img src="{{ block.settings.image2 | img_url: '600x' }}" alt="" style="width:100%">
+        <img src="{{ block.settings.image2 | image_url: width: 600 }}" alt="Image 2" style="width:100%">
       {% endif %}
       {% if block.settings.image3 %}
-         <img src="{{ block.settings.image3 | img_url: '600x' }}" alt="" style="width:100%">
+        <img src="{{ block.settings.image3 | image_url: width: 600 }}" alt="Image 3" style="width:100%">
       {% endif %}
     </div>
   {% endfor %}
 </div>
 
 <style>
-.flexi-gallery-header {
-  text-align: center;
-  padding: 32px;
-}
-
-.flexi-gallery-row {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0 4px;
-}
-
-.flexi-gallery-column {
-  flex: 25%;
-  max-width: 25%;
-  padding: 0 4px;
-}
-
-.flexi-gallery-column img {
-  margin-top: 8px;
-  vertical-align: middle;
-}
-
-/* Responsive */
-@media (max-width: 800px) {
-  .flexi-gallery-column {
-    flex: 50%;
-    max-width: 50%;
+  .flexi-gallery-header {
+    text-align: center;
+    padding: 32px;
   }
-}
-.flex-heading{
-    font-size:24px;
-}
 
-@media (max-width: 600px) {
-  .flexi-gallery-column {
-    flex: 100%;
-    max-width: 100%;
+  .flexi-gallery-row {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 4px;
   }
-}
+
+  .flexi-gallery-column {
+    flex: 25%;
+    max-width: 25%;
+    padding: 0 4px;
+  }
+
+  .flexi-gallery-column img {
+    margin-top: 8px;
+    vertical-align: middle;
+  }
+
+  /* Responsive */
+  @media (max-width: 800px) {
+    .flexi-gallery-column {
+      flex: 50%;
+      max-width: 50%;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .flexi-gallery-column {
+      flex: 100%;
+      max-width: 100%;
+    }
+  }
+
+  .flex-heading {
+    font-size: 24px;
+  }
 </style>
+
 {% schema %}
 {
   "name": "Flexi Image Gallery",
@@ -118,4 +124,3 @@
   ]
 }
 {% endschema %}
-
