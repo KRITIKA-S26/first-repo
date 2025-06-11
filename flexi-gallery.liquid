@@ -1,6 +1,6 @@
 <!-- sections/flexi-gallery.liquid -->
 {% comment %}
-  Flexi Image Gallery Section
+  Flexi Image Gallery Section (3 Columns x 3 Rows)
 {% endcomment %}
 
 <div class="flexi-gallery-header">
@@ -11,6 +11,7 @@
 <div class="flexi-gallery-row">
   {% for block in section.blocks %}
     <div class="flexi-gallery-column">
+      {% assign images = '' | split: ',' %}
       {% if block.settings.image1 %}
         <img src="{{ block.settings.image1 | image_url: width: 600 }}" alt="Image 1" style="width:100%">
       {% endif %}
@@ -32,38 +33,39 @@
 
   .flexi-gallery-row {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     padding: 0 4px;
+    justify-content: center;
   }
 
   .flexi-gallery-column {
-    flex: 25%;
-    max-width: 25%;
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
     padding: 0 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
 
   .flexi-gallery-column img {
-    margin-top: 8px;
+    width: 100%;
+    height: auto;
     vertical-align: middle;
-  }
-
-  /* Responsive */
-  @media (max-width: 800px) {
-    .flexi-gallery-column {
-      flex: 50%;
-      max-width: 50%;
-    }
-  }
-
-  @media (max-width: 600px) {
-    .flexi-gallery-column {
-      flex: 100%;
-      max-width: 100%;
-    }
   }
 
   .flex-heading {
     font-size: 24px;
+  }
+
+  /* Prevent columns from stacking on small screens (force 3x3 grid) */
+  @media (max-width: 600px) {
+    .flexi-gallery-row {
+      flex-wrap: wrap;
+    }
+    .flexi-gallery-column {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
   }
 </style>
 
@@ -75,13 +77,13 @@
       "type": "text",
       "id": "title",
       "label": "Gallery Title",
-      "default": "Responsive Image Gallery"
+      "default": "3x3 Image Gallery"
     },
     {
       "type": "text",
       "id": "subtitle",
       "label": "Subtitle",
-      "default": "Resize the browser window to see the responsive effect."
+      "default": "Exactly 9 images in a 3-column layout."
     }
   ],
   "blocks": [
@@ -92,17 +94,17 @@
         {
           "type": "image_picker",
           "id": "image1",
-          "label": "Image 1"
+          "label": "Top Image"
         },
         {
           "type": "image_picker",
           "id": "image2",
-          "label": "Image 2"
+          "label": "Middle Image"
         },
         {
           "type": "image_picker",
           "id": "image3",
-          "label": "Image 3"
+          "label": "Bottom Image"
         }
       ]
     }
@@ -110,17 +112,15 @@
   "max_blocks": 3,
   "presets": [
     {
-      "name": "Flexi Image Gallery",
+      "name": "3x3 Image Grid",
       "category": "Custom",
       "blocks": [
-        {
-          "type": "image_column"
-        },
-        {
-          "type": "image_column"
-        }
+        { "type": "image_column" },
+        { "type": "image_column" },
+        { "type": "image_column" }
       ]
     }
   ]
 }
 {% endschema %}
+
